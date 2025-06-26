@@ -117,7 +117,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   onClick={() => setActiveView("profile")}
-                  className="border-violet-200 text-violet-600 hover:bg-violet-50 h-12 px-6"
+                  className="bg-white border-violet-200 text-violet-600 hover:bg-violet-50 h-12 px-6"
                 >
                   Profile
                 </Button>
@@ -172,7 +172,7 @@ const Index = () => {
               size="lg"
               variant="outline"
               onClick={() => setShowATSChecker(true)}
-              className="border-violet-200 text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
+              className="border-violet-200 bg-white text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:text-black px-8 py-6 text-lg h-14 w-full sm:w-auto"
             >
               Check ATS Score
               <Upload className="ml-2 w-5 h-5" />
@@ -274,7 +274,7 @@ const Index = () => {
                 </ul>
                 
                 <Button 
-                  className={`w-full h-12 ${
+                  className={`w-full h-12 hover:text-black bg-slate-100 ${
                     plan.popular 
                       ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
                       : 'border-violet-200 text-violet-600 hover:bg-violet-50'

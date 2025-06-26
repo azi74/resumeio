@@ -49,7 +49,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Photo Upload */}
         <div className="lg:col-span-1">
-          <Card className="border-violet-100">
+          <Card className="border-violet-100 bg-white">
             <CardHeader>
               <CardTitle className="text-lg">Profile Photo</CardTitle>
               <p className="text-sm text-slate-600">Optional - Add a professional photo</p>
@@ -63,7 +63,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
               </Avatar>
               <Button 
                 variant="outline" 
-                className="border-violet-200 text-violet-600 hover:bg-violet-50"
+                className="bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50"
               >
                 <Upload className="w-4 h-4 mr-2" />
                 Upload Photo
@@ -75,7 +75,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
         {/* Form Fields */}
         <div className="lg:col-span-2 space-y-6">
           {/* Basic Information */}
-          <Card className="border-violet-100">
+          <Card className="border-violet-100 bg-white">
             <CardHeader>
               <CardTitle className="text-lg">Basic Information</CardTitle>
             </CardHeader>
@@ -88,7 +88,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                     <Input 
                       id="fullName"
                       placeholder="John Doe"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 bg-white border-violet-200 focus:border-violet-500"
                       {...form.register("fullName", { required: true })}
                     />
                   </div>
@@ -102,7 +102,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                       id="email"
                       type="email"
                       placeholder="john.doe@email.com"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 bg-white border-violet-200 focus:border-violet-500"
                       {...form.register("email", { required: true })}
                     />
                   </div>
@@ -115,7 +115,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                     <Input 
                       id="phone"
                       placeholder="+1 (555) 123-4567"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 bg-white placeholder-black border-violet-200 focus:border-violet-500"
                       {...form.register("phone")}
                     />
                   </div>
@@ -128,7 +128,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                     <Input 
                       id="location"
                       placeholder="New York, NY"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 bg-white border-violet-200 focus:border-violet-500"
                       {...form.register("location")}
                     />
                   </div>
@@ -138,7 +138,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
           </Card>
 
           {/* Online Presence */}
-          <Card className="border-violet-100">
+          <Card className="bg-white border-violet-100">
             <CardHeader>
               <CardTitle className="text-lg">Online Presence</CardTitle>
               <p className="text-sm text-slate-600">Add your professional links</p>

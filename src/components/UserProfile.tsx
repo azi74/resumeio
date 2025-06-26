@@ -115,22 +115,10 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <div className="flex flex-wrap gap-3 mb-4 lg:mb-0">
-                    <Badge className="bg-white text-slate-700 border-slate-200">
-                      {resumes.length} Resumes
-                    </Badge>
-                    <Badge className="bg-white text-slate-700 border-slate-200">
-                      {certifications.length} Certifications
-                    </Badge>
-                    <Badge className="bg-violet-100 text-violet-700 border-violet-200">
-                      Premium Member
-                    </Badge>
-                  </div>
-                  
                   <Button 
                     variant="outline" 
                     onClick={handleLogout}
-                    className="border-red-200 text-red-600 hover:bg-red-50 h-12 px-6"
+                    className="border-red-200 bg-white hover:text-red-500 text-red-600 hover:bg-red-50 h-12 px-6"
                   >
                     <LogOut className="w-4 h-4 mr-2" />
                     Logout
@@ -141,14 +129,14 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
           </Card>
 
           <Tabs defaultValue="resumes" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-violet-50 mb-8">
-              <TabsTrigger value="resumes" className="data-[state=active]:bg-white">
+            <TabsList className="grid w-full text-black grid-cols-3 bg-violet-50 mb-8">
+              <TabsTrigger value="resumes" className="h-12 data-[state=active]:bg-white">
                 My Resumes
               </TabsTrigger>
-              <TabsTrigger value="templates" className="data-[state=active]:bg-white">
+              <TabsTrigger value="templates" className="h-12 data-[state=active]:bg-white">
                 Favorite Templates
               </TabsTrigger>
-              <TabsTrigger value="certifications" className="data-[state=active]:bg-white">
+              <TabsTrigger value="certifications" className="h-12 data-[state=active]:bg-white">
                 Certifications
               </TabsTrigger>
             </TabsList>
@@ -181,30 +169,24 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                               <span>Created: {resume.createdAt}</span>
                               <span>•</span>
                               <span>{resume.downloads} downloads</span>
-                              <Badge 
-                                variant={resume.status === "Complete" ? "default" : "secondary"}
-                                className="ml-2"
-                              >
-                                {resume.status}
-                              </Badge>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button size="sm" variant="outline" className="border-violet-200 text-violet-600 h-10 px-4">
+                        <div className="flex items-center space-x-2 transition-opacity">
+                          <Button size="sm" variant="outline" className="border-violet-200 hover:bg-slate-200 hover:text-black bg-white text-violet-600 h-10 px-4">
                             <Edit className="w-4 h-4 mr-1" />
                             Edit
                           </Button>
-                          <Button size="sm" variant="outline" className="border-violet-200 text-violet-600 h-10 px-4">
+                          <Button size="sm" variant="outline" className="border-violet-200 hover:bg-slate-200 hover:text-black bg-white text-violet-600 h-10 px-4">
                             <Download className="w-4 h-4 mr-1" />
                             Download
                           </Button>
-                          <Button size="sm" variant="outline" className="border-violet-200 text-violet-600 h-10 px-4">
+                          <Button size="sm" variant="outline" className="border-violet-200 hover:bg-slate-200 hover:text-black bg-white text-violet-600 h-10 px-4">
                             <Share className="w-4 h-4 mr-1" />
                             Share
                           </Button>
-                          <Button size="sm" variant="outline" className="border-red-200 text-red-600 h-10 px-4">
+                          <Button size="sm" variant="outline" className="border-red-200 bg-black hover:bg-black hover:text-red-700 text-white h-10 px-4">
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -262,7 +244,7 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                     </CardTitle>
                     <Button 
                       variant="outline" 
-                      className="border-violet-200 text-violet-600 hover:bg-violet-50 h-10 px-4"
+                      className="bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50 h-10 px-4"
                     >
                       <Plus className="w-4 h-4 mr-2" />
                       Add Certification
@@ -277,20 +259,15 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                           <div className="flex-1">
                             <div className="flex items-center space-x-2 mb-2">
                               <h4 className="font-semibold text-slate-800">{cert.name}</h4>
-                              {cert.verified && (
-                                <Badge className="bg-white text-slate-700 border-slate-200 text-xs">
-                                  Verified
-                                </Badge>
-                              )}
                             </div>
                             <p className="text-slate-600 mb-1">{cert.issuer}</p>
                             <p className="text-sm text-violet-600">Issued: {cert.date}</p>
                           </div>
                           <div className="flex space-x-2">
-                            <Button size="sm" variant="outline" className="border-violet-200 text-violet-600 h-8 px-3">
+                            <Button size="sm" variant="outline" className="bg-white hover:text-black hover:bg-slate-200 border-violet-200 text-violet-600 h-8 px-3">
                               <Edit className="w-3 h-3" />
                             </Button>
-                            <Button size="sm" variant="outline" className="border-red-200 text-red-600 h-8 px-3">
+                            <Button size="sm" variant="outline" className="bg-white hover:bg-slate-200 hover:text-black border-red-200 text-red-600 h-8 px-3">
                               <Trash2 className="w-3 h-3" />
                             </Button>
                           </div>

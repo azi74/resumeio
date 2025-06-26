@@ -109,7 +109,7 @@ const ResumeBuilder = ({ onBack }: ResumeBuilderProps) => {
             <Button 
               variant="outline"
               onClick={() => setShowPreview(true)}
-              className="border-violet-200 text-violet-600 hover:bg-violet-50"
+              className="bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50"
             >
               <Eye className="w-4 h-4 mr-2" />
               Preview
@@ -137,7 +137,7 @@ const ResumeBuilder = ({ onBack }: ResumeBuilderProps) => {
                   {currentStep + 1} of {steps.length}
                 </span>
               </div>
-              <Progress value={progress} className="h-2" />
+              <Progress value={progress} className="bg-violet-500 h-2" />
             </CardHeader>
           </Card>
 

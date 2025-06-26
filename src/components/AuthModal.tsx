@@ -48,7 +48,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md bg-transparent-200 border-white">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold text-slate-800">
@@ -66,11 +66,11 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
         </DialogHeader>
 
         <Tabs defaultValue="login" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-violet-50">
-            <TabsTrigger value="login" className="data-[state=active]:bg-white">
+          <TabsList className="grid w-full grid-cols-2 bg-violet-50 hover:text-black">
+            <TabsTrigger value="login" className="data-[state=active]:bg-white hover:bg-white">
               Sign In
             </TabsTrigger>
-            <TabsTrigger value="signup" className="data-[state=active]:bg-white">
+            <TabsTrigger value="signup" className="data-[state=active]:bg-white hover:bg-white">
               Sign Up
             </TabsTrigger>
           </TabsList>
@@ -85,7 +85,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="email"
                     type="email"
                     placeholder="Enter your email"
-                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
+                    className="pl-10 bg-slate-100 focus:placeholder-gray-700 border-violet-200 focus:border-violet-500 h-12"
                     {...loginForm.register("email", { required: true })}
                   />
                 </div>
@@ -99,7 +99,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="password"
                     type="password"
                     placeholder="Enter your password"
-                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
+                    className="pl-10 bg-slate-100 hover:placeholder-200 focus:placeholder-gray-700 border-violet-200 focus:border-violet-500 h-12"
                     {...loginForm.register("password", { required: true })}
                   />
                 </div>
@@ -126,7 +126,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
+                className="w-full bg-white border-violet-200 text-slate-700 hover:text-black hover:bg-violet-50 h-12"
                 disabled={isLoading}
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
@@ -150,7 +150,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="name"
                     type="text"
                     placeholder="Enter your full name"
-                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
+                    className="pl-10 bg-slate-100 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("name", { required: true })}
                   />
                 </div>
@@ -164,7 +164,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="signup-email"
                     type="email"
                     placeholder="Enter your email"
-                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
+                    className="pl-10 bg-slate-100 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("email", { required: true })}
                   />
                 </div>
@@ -178,7 +178,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="signup-password"
                     type="password"
                     placeholder="Create a password"
-                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
+                    className="pl-10 bg-slate-100 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("password", { required: true })}
                   />
                 </div>
@@ -205,7 +205,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                 type="button"
                 variant="outline"
                 onClick={handleGoogleAuth}
-                className="w-full border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
+                className="w-full bg-white border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
                 disabled={isLoading}
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
