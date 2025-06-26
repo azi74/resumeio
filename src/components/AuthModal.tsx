@@ -39,17 +39,17 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-white/95 backdrop-blur-md border-violet-200">
+      <DialogContent className="sm:max-w-md bg-white/70 backdrop-blur-md border-violet-200 shadow-2xl">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold text-slate-800">
-              Welcome to ResumeForge
+              Welcome to resume.io
             </DialogTitle>
             <Button 
               variant="ghost" 
               size="sm"
               onClick={onClose}
-              className="h-8 w-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600"
+              className="h-8 w-8 rounded-full bg-red-100 hover:bg-red-200 text-red-600 border border-red-300"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -76,7 +76,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="email"
                     type="email"
                     placeholder="Enter your email"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
                     {...loginForm.register("email", { required: true })}
                   />
                 </div>
@@ -90,7 +90,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="password"
                     type="password"
                     placeholder="Enter your password"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
                     {...loginForm.register("password", { required: true })}
                   />
                 </div>
@@ -98,7 +98,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
+                className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white h-12"
                 disabled={isLoading}
               >
                 {isLoading ? "Signing In..." : "Sign In"}
@@ -116,7 +116,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="name"
                     type="text"
                     placeholder="Enter your full name"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("name", { required: true })}
                   />
                 </div>
@@ -130,7 +130,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="signup-email"
                     type="email"
                     placeholder="Enter your email"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("email", { required: true })}
                   />
                 </div>
@@ -144,7 +144,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
                     id="signup-password"
                     type="password"
                     placeholder="Create a password"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 focus:border-violet-500 h-12"
                     {...signupForm.register("password", { required: true })}
                   />
                 </div>
@@ -152,7 +152,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
+                className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white h-12"
                 disabled={isLoading}
               >
                 {isLoading ? "Creating Account..." : "Create Account"}
