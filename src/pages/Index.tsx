@@ -3,14 +3,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Share, Users, Star, Zap, Check } from "lucide-react";
+import { FileText, Download, Share, Users, Star, Zap, Check, Upload } from "lucide-react";
 import ResumeBuilder from "@/components/ResumeBuilder";
 import UserProfile from "@/components/UserProfile";
 import AuthModal from "@/components/AuthModal";
+import ATSScoreModal from "@/components/ATSScoreModal";
 
 const Index = () => {
   const [activeView, setActiveView] = useState<"home" | "builder" | "profile">("home");
   const [showAuth, setShowAuth] = useState(false);
+  const [showATSChecker, setShowATSChecker] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const features = [
@@ -108,15 +110,6 @@ const Index = () => {
             </div>
             <h1 className="text-xl font-bold text-slate-800">resume.io</h1>
           </div>
-          
-          <nav className="hidden md:flex items-center space-x-6">
-            <Button variant="ghost" className="text-slate-600 hover:text-violet-600">
-              About
-            </Button>
-            <Button variant="ghost" className="text-slate-600 hover:text-violet-600">
-              Help
-            </Button>
-          </nav>
 
           <div className="flex items-center space-x-3">
             {isLoggedIn ? (
@@ -173,6 +166,16 @@ const Index = () => {
             >
               Start Building Free
               <FileText className="ml-2 w-5 h-5" />
+            </Button>
+            
+            <Button 
+              size="lg"
+              variant="outline"
+              onClick={() => setShowATSChecker(true)}
+              className="border-violet-200 text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14"
+            >
+              Check ATS Score
+              <Upload className="ml-2 w-5 h-5" />
             </Button>
           </div>
           
@@ -309,53 +312,50 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Smaller Footer */}
       <footer className="bg-slate-900 text-white">
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-4 gap-8">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="col-span-1">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-white" />
+              <div className="flex items-center space-x-2 mb-3">
+                <div className="w-6 h-6 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-white" />
                 </div>
-                <h3 className="text-xl font-bold">resume.io</h3>
+                <h3 className="text-lg font-bold">resume.io</h3>
               </div>
-              <p className="text-slate-400 mb-4">
-                Create professional, ATS-optimized resumes that help you land your dream job.
+              <p className="text-slate-400 text-sm">
+                Create professional, ATS-optimized resumes.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-slate-400">
+              <h4 className="font-semibold mb-3 text-sm">Product</h4>
+              <ul className="space-y-1 text-slate-400 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-slate-400">
+              <h4 className="font-semibold mb-3 text-sm">Support</h4>
+              <ul className="space-y-1 text-slate-400 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-slate-400">
+              <h4 className="font-semibold mb-3 text-sm">Legal</h4>
+              <ul className="space-y-1 text-slate-400 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
+          <div className="border-t border-slate-800 mt-6 pt-4 text-center text-slate-400 text-sm">
             <p>&copy; 2024 resume.io. All rights reserved.</p>
           </div>
         </div>
@@ -369,6 +369,12 @@ const Index = () => {
           setIsLoggedIn(true);
           setShowAuth(false);
         }}
+      />
+
+      {/* ATS Score Modal */}
+      <ATSScoreModal 
+        isOpen={showATSChecker} 
+        onClose={() => setShowATSChecker(false)}
       />
     </div>
   );
