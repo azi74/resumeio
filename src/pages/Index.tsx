@@ -181,15 +181,15 @@ const Index = () => {
           
           <div className="mt-12 flex items-center justify-center space-x-8 text-sm text-slate-500">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
               <span>No Credit Card Required</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
               <span>Free Templates</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
               <span>ATS Optimized</span>
             </div>
           </div>
@@ -312,25 +312,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Smaller Footer */}
+      {/* Footer */}
       <footer className="bg-slate-900 text-white">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-4 gap-6">
+        <div className="container mx-auto px-4 py-6">
+          <div className="grid md:grid-cols-4 gap-4">
             <div className="col-span-1">
-              <div className="flex items-center space-x-2 mb-3">
-                <div className="w-6 h-6 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <FileText className="w-4 h-4 text-white" />
+              <div className="flex items-center space-x-2 mb-2">
+                <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
+                  <FileText className="w-3 h-3 text-white" />
                 </div>
-                <h3 className="text-lg font-bold">resume.io</h3>
+                <h3 className="text-md font-bold">resume.io</h3>
               </div>
-              <p className="text-slate-400 text-sm">
+              <p className="text-slate-400 text-xs">
                 Create professional, ATS-optimized resumes.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3 text-sm">Product</h4>
-              <ul className="space-y-1 text-slate-400 text-sm">
+              <h4 className="font-semibold mb-2 text-xs">Product</h4>
+              <ul className="space-y-1 text-slate-400 text-xs">
                 <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
@@ -338,8 +338,8 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3 text-sm">Support</h4>
-              <ul className="space-y-1 text-slate-400 text-sm">
+              <h4 className="font-semibold mb-2 text-xs">Support</h4>
+              <ul className="space-y-1 text-slate-400 text-xs">
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
@@ -347,15 +347,15 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3 text-sm">Legal</h4>
-              <ul className="space-y-1 text-slate-400 text-sm">
+              <h4 className="font-semibold mb-2 text-xs">Legal</h4>
+              <ul className="space-y-1 text-slate-400 text-xs">
                 <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-800 mt-6 pt-4 text-center text-slate-400 text-sm">
+          <div className="border-t border-slate-800 mt-4 pt-3 text-center text-slate-400 text-xs">
             <p>&copy; 2024 resume.io. All rights reserved.</p>
           </div>
         </div>

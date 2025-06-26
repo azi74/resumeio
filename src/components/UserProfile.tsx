@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, FileText, Download, Share, Plus, Edit, Trash2, Star, Heart, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { ArrowLeft, FileText, Download, Share, Plus, Edit, Trash2, Star, Heart, Mail, LogOut } from "lucide-react";
 
 interface UserProfileProps {
   onBack: () => void;
@@ -54,11 +54,13 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
   const userInfo = {
     name: "John Doe",
     email: "john.doe@email.com",
-    phone: "+1 (555) 123-4567",
-    location: "San Francisco, CA",
-    title: "Senior Software Engineer",
-    joinDate: "January 2024",
-    profileCompletion: 85
+    title: "Senior Software Engineer"
+  };
+
+  const handleLogout = () => {
+    // Handle logout logic here
+    console.log("User logged out");
+    onBack();
   };
 
   return (
@@ -93,7 +95,7 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
           {/* Profile Header */}
           <Card className="mb-8 border-violet-100 bg-white/80 backdrop-blur-sm">
             <CardContent className="p-8">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-6 lg:space-y-0 lg:space-x-8">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between space-y-6 lg:space-y-0">
                 <div className="flex items-center space-x-6">
                   <Avatar className="w-24 h-24">
                     <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" />
@@ -105,33 +107,19 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                   <div>
                     <h2 className="text-3xl font-bold text-slate-800 mb-2">{userInfo.name}</h2>
                     <p className="text-slate-600 mb-4">{userInfo.title}</p>
-                    <div className="flex flex-wrap gap-3 text-sm text-slate-500">
-                      <div className="flex items-center">
-                        <Mail className="w-4 h-4 mr-1" />
-                        {userInfo.email}
-                      </div>
-                      <div className="flex items-center">
-                        <Phone className="w-4 h-4 mr-1" />
-                        {userInfo.phone}
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {userInfo.location}
-                      </div>
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        Member since {userInfo.joinDate}
-                      </div>
+                    <div className="flex items-center text-sm text-slate-500">
+                      <Mail className="w-4 h-4 mr-1" />
+                      {userInfo.email}
                     </div>
                   </div>
                 </div>
                 
-                <div className="flex-1 lg:text-right">
-                  <div className="flex flex-wrap gap-3 mb-4">
-                    <Badge className="bg-green-100 text-green-700 border-green-200">
+                <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap gap-3 mb-4 lg:mb-0">
+                    <Badge className="bg-white text-slate-700 border-slate-200">
                       {resumes.length} Resumes
                     </Badge>
-                    <Badge className="bg-blue-100 text-blue-700 border-blue-200">
+                    <Badge className="bg-white text-slate-700 border-slate-200">
                       {certifications.length} Certifications
                     </Badge>
                     <Badge className="bg-violet-100 text-violet-700 border-violet-200">
@@ -139,22 +127,13 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                     </Badge>
                   </div>
                   
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-slate-600">Profile Completion</span>
-                      <span className="text-sm font-semibold text-slate-800">{userInfo.profileCompletion}%</span>
-                    </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-violet-500 to-purple-600 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${userInfo.profileCompletion}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                  
-                  <Button variant="outline" className="border-violet-200 text-violet-600 hover:bg-violet-50 h-12 px-6">
-                    <Edit className="w-4 h-4 mr-2" />
-                    Edit Profile
+                  <Button 
+                    variant="outline" 
+                    onClick={handleLogout}
+                    className="border-red-200 text-red-600 hover:bg-red-50 h-12 px-6"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
                   </Button>
                 </div>
               </div>
@@ -299,7 +278,7 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                             <div className="flex items-center space-x-2 mb-2">
                               <h4 className="font-semibold text-slate-800">{cert.name}</h4>
                               {cert.verified && (
-                                <Badge className="bg-green-100 text-green-700 border-green-200 text-xs">
+                                <Badge className="bg-white text-slate-700 border-slate-200 text-xs">
                                   Verified
                                 </Badge>
                               )}
