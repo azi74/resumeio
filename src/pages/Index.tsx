@@ -141,19 +141,19 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
+      <section className="container mx-auto px-4 py-12 md:py-20 text-center">
         <div className="max-w-4xl mx-auto">
-          <Badge className="mb-6 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-200 transition-colors">
+          <Badge className="mb-6 bg-white text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
             ✨ High ATS Score Guaranteed
           </Badge>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
             Create Your Perfect
             <span className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent"> ATS-Optimized </span>
             Resume
           </h1>
           
-          <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
             Build professional resumes that pass applicant tracking systems and land you interviews. 
             Choose from 6 expertly designed templates and download in multiple formats.
           </p>
@@ -162,7 +162,7 @@ const Index = () => {
             <Button 
               size="lg"
               onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-              className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14"
+              className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
             >
               Start Building Free
               <FileText className="ml-2 w-5 h-5" />
@@ -172,14 +172,14 @@ const Index = () => {
               size="lg"
               variant="outline"
               onClick={() => setShowATSChecker(true)}
-              className="border-violet-200 text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14"
+              className="border-violet-200 text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
             >
               Check ATS Score
               <Upload className="ml-2 w-5 h-5" />
             </Button>
           </div>
           
-          <div className="mt-12 flex items-center justify-center space-x-8 text-sm text-slate-500">
+          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-slate-500">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
               <span>No Credit Card Required</span>
@@ -197,17 +197,17 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
+      <section className="container mx-auto px-4 py-12 md:py-20">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
             Everything You Need to Land Your Dream Job
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
             Our resume builder is packed with features to help you create the perfect resume
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => (
             <Card 
               key={index}
@@ -230,22 +230,22 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
+      <section className="container mx-auto px-4 py-12 md:py-20">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
             Choose Your Plan
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
             Select the perfect plan for your resume building needs
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <Card 
               key={index}
               className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
-                plan.popular ? 'ring-2 ring-violet-500 shadow-lg transform scale-105' : 'hover:border-violet-200'
+                plan.popular ? 'ring-2 ring-violet-500 shadow-lg md:transform md:scale-105' : 'hover:border-violet-200'
               }`}
             >
               {plan.popular && (
@@ -255,7 +255,7 @@ const Index = () => {
                   </Badge>
                 </div>
               )}
-              <CardContent className="p-8">
+              <CardContent className="p-6 md:p-8">
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
                   <div className="flex items-baseline justify-center">
@@ -291,14 +291,14 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+      <section className="container mx-auto px-4 py-12 md:py-20">
+        <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative z-10">
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Build Your Perfect Resume?
             </h2>
-            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
               Join thousands of job seekers who have successfully landed interviews with our ATS-optimized resumes
             </p>
             <Button 
@@ -314,14 +314,14 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-white">
-        <div className="container mx-auto px-4 py-6">
-          <div className="grid md:grid-cols-4 gap-4">
-            <div className="col-span-1">
-              <div className="flex items-center space-x-2 mb-2">
-                <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
-                  <FileText className="w-3 h-3 text-white" />
+        <div className="container mx-auto px-4 py-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
+            <div className="col-span-2 md:col-span-1 mb-4 md:mb-0">
+              <div className="flex items-center justify-center md:justify-start space-x-2 mb-2">
+                <div className="w-4 h-4 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
+                  <FileText className="w-2 h-2 text-white" />
                 </div>
-                <h3 className="text-md font-bold">resume.io</h3>
+                <h3 className="text-sm font-bold">resume.io</h3>
               </div>
               <p className="text-slate-400 text-xs">
                 Create professional, ATS-optimized resumes.
@@ -355,7 +355,7 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-slate-800 mt-4 pt-3 text-center text-slate-400 text-xs">
+          <div className="border-t border-slate-800 mt-3 pt-2 text-center text-slate-400 text-xs">
             <p>&copy; 2024 resume.io. All rights reserved.</p>
           </div>
         </div>
