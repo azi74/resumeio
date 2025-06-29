@@ -92,10 +92,24 @@
     @apply border-border;
   }
 
-  body {
+  html, body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     background: rgb(248 250 252);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Prevent horizontal overflow on all elements */
+  * {
+    box-sizing: border-box;
   }
 
   /* Custom animations */
@@ -223,8 +237,9 @@ input:focus, textarea:focus, select:focus {
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    max-width: 100%;
   }
   
   /* Ensure proper spacing on mobile */
@@ -235,11 +250,41 @@ input:focus, textarea:focus, select:focus {
   /* Prevent overflow on mobile */
   body {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   /* Better mobile touch targets */
   button, a {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* Ensure all sections stay within bounds */
+  section {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Fix for horizontal scrolling cards */
+  .overflow-x-auto {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Ensure all content containers respect viewport */
+.max-w-7xl {
+  max-width: min(80rem, calc(100vw - 1.5rem));
+}
+
+@media (max-width: 640px) {
+  .max-w-7xl {
+    max-width: calc(100vw - 1rem);
   }
 }
