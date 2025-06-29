@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -143,27 +142,27 @@ const Index = () => {
       <header className={`border-b border-slate-200 bg-white/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
         isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
       }`}>
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-2 md:py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <FileText className="w-5 h-5 text-white" />
+            <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <FileText className="w-4 h-4 md:w-5 md:h-5 text-white" />
             </div>
-            <h1 className="text-xl font-bold text-slate-800">resume.io</h1>
+            <h1 className="text-lg md:text-xl font-bold text-slate-800">resume.io</h1>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 md:space-x-3">
             {isLoggedIn ? (
               <>
                 <Button 
                   variant="outline" 
                   onClick={() => setActiveView("profile")}
-                  className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50 h-12 px-6"
+                  className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50 h-8 px-3 md:h-12 md:px-6 text-xs md:text-sm"
                 >
                   Profile
                 </Button>
                 <Button 
                   onClick={() => setActiveView("builder")}
-                  className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 h-12 px-6"
+                  className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 h-8 px-3 md:h-12 md:px-6 text-xs md:text-sm"
                 >
                   Create Resume
                 </Button>
@@ -171,7 +170,7 @@ const Index = () => {
             ) : (
               <Button 
                 onClick={() => setShowAuth(true)}
-                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 h-12 px-6"
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 h-8 px-3 md:h-12 md:px-6 text-xs md:text-sm"
               >
                 Get Started
               </Button>
@@ -180,48 +179,48 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Add padding to account for fixed header */}
-      <div className="pt-20">
+      {/* Add padding to account for fixed header - reduced for mobile */}
+      <div className="pt-12 md:pt-20">
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20 text-center">
+        <section className="container mx-auto px-4 py-8 md:py-12 lg:py-20 text-center">
           <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
+            <Badge className="mb-4 md:mb-6 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors text-xs md:text-sm">
               ✨ High ATS Score Guaranteed
             </Badge>
             
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+            <h1 className="text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-bold text-slate-800 mb-4 md:mb-6 leading-tight">
               Create Your Perfect
               <span className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent"> ATS-Optimized </span>
               Resume
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-slate-600 mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed">
               Build professional resumes that pass applicant tracking systems and land you interviews. 
               Choose from 6 expertly designed templates and download in multiple formats.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
               <Button 
                 size="lg"
                 onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-sm md:text-lg h-12 md:h-14 w-full sm:w-auto"
               >
                 Start Building Free
-                <FileText className="ml-2 w-5 h-5" />
+                <FileText className="ml-2 w-4 h-4 md:w-5 md:h-5" />
               </Button>
               
               <Button 
                 size="lg"
                 variant="outline"
                 onClick={() => setShowATSChecker(true)}
-                className="border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
+                className="border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-sm md:text-lg h-12 md:h-14 w-full sm:w-auto"
               >
                 Check ATS Score
-                <Upload className="ml-2 w-5 h-5" />
+                <Upload className="ml-2 w-4 h-4 md:w-5 md:h-5" />
               </Button>
             </div>
             
-            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-slate-500">
+            <div className="mt-6 md:mt-8 lg:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 md:space-x-8 text-xs md:text-sm text-slate-500">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                 <span>No Credit Card Required</span>
@@ -239,30 +238,30 @@ const Index = () => {
         </section>
 
         {/* Features Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+        <section className="container mx-auto px-4 py-8 md:py-12 lg:py-20">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 mb-3 md:mb-4">
               Everything You Need to Land Your Dream Job
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto">
               Our resume builder is packed with features to help you create the perfect resume
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6 xl:gap-8">
             {features.map((feature, index) => (
               <Card 
                 key={index}
                 className="border-slate-200 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white"
               >
-                <CardContent className="p-4 md:p-6">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 md:mb-4 text-white group-hover:scale-110 transition-transform duration-200">
+                <CardContent className="p-3 md:p-4 lg:p-6">
+                  <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-2 md:mb-3 lg:mb-4 text-white group-hover:scale-110 transition-transform duration-200">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base md:text-xl font-semibold text-slate-800 mb-2">
+                  <h3 className="text-sm md:text-base lg:text-xl font-semibold text-slate-800 mb-1 md:mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm md:text-base text-slate-600">
+                  <p className="text-xs md:text-sm lg:text-base text-slate-600">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -272,7 +271,7 @@ const Index = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20">
+        <section className="container mx-auto px-4 py-8 md:py-12 lg:py-20">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
               Choose Your Plan
@@ -391,20 +390,20 @@ const Index = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="container mx-auto px-4 py-12 md:py-20">
-          <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+        <section className="container mx-auto px-4 py-8 md:py-12 lg:py-20">
+          <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 text-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-black/5"></div>
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
                 Ready to Build Your Perfect Resume?
               </h2>
-              <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+              <p className="text-sm md:text-lg lg:text-xl opacity-90 mb-6 md:mb-8 max-w-2xl mx-auto">
                 Join thousands of job seekers who have successfully landed interviews with our ATS-optimized resumes
               </p>
               <Button 
                 size="lg"
                 onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-                className="bg-white text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg font-semibold h-14"
+                className="bg-white text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-sm md:text-lg font-semibold h-12 md:h-14"
               >
                 Create Your Resume Now
               </Button>
