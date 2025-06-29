@@ -1,19 +1,57 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Share, Users, Star, Zap, Check, Upload } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { FileText, Download, Share, Users, Star, Zap, Check, Upload, Mail, Phone, MapPin, Github, Twitter, Linkedin } from "lucide-react";
 import ResumeBuilder from "@/components/ResumeBuilder";
 import UserProfile from "@/components/UserProfile";
 import AuthModal from "@/components/AuthModal";
 import ATSScoreModal from "@/components/ATSScoreModal";
+import MobileAuthBottomSheet from "@/components/MobileAuthBottomSheet";
+import MobileATSBottomSheet from "@/components/MobileATSBottomSheet";
 
 const Index = () => {
   const [activeView, setActiveView] = useState<"home" | "builder" | "profile">("home");
   const [showAuth, setShowAuth] = useState(false);
   const [showATSChecker, setShowATSChecker] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle navbar visibility on scroll
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+          setIsNavbarVisible(false);
+        } else {
+          setIsNavbarVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   const features = [
     {
@@ -102,7 +140,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-slate-100">
       {/* Header */}
-      <header className="border-b border-violet-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+      <header className={`border-b border-violet-100 bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -140,242 +180,411 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <Badge className="mb-6 bg-white text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
-            ✨ High ATS Score Guaranteed
-          </Badge>
-          
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
-            Create Your Perfect
-            <span className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent"> ATS-Optimized </span>
-            Resume
-          </h1>
-          
-          <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Build professional resumes that pass applicant tracking systems and land you interviews. 
-            Choose from 6 expertly designed templates and download in multiple formats.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg"
-              onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-              className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
-            >
-              Start Building Free
-              <FileText className="ml-2 w-5 h-5" />
-            </Button>
+      {/* Add padding to account for fixed header */}
+      <div className="pt-20">
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20 text-center">
+          <div className="max-w-4xl mx-auto">
+            <Badge className="mb-6 bg-white text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
+              ✨ High ATS Score Guaranteed
+            </Badge>
             
-            <Button 
-              size="lg"
-              variant="outline"
-              onClick={() => setShowATSChecker(true)}
-              className="border-violet-200 bg-white text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:text-black px-8 py-6 text-lg h-14 w-full sm:w-auto"
-            >
-              Check ATS Score
-              <Upload className="ml-2 w-5 h-5" />
-            </Button>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+              Create Your Perfect
+              <span className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent"> ATS-Optimized </span>
+              Resume
+            </h1>
+            
+            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Build professional resumes that pass applicant tracking systems and land you interviews. 
+              Choose from 6 expertly designed templates and download in multiple formats.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg"
+                onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
+              >
+                Start Building Free
+                <FileText className="ml-2 w-5 h-5" />
+              </Button>
+              
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => setShowATSChecker(true)}
+                className="border-violet-200 bg-white text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:text-black px-8 py-6 text-lg h-14 w-full sm:w-auto"
+              >
+                Check ATS Score
+                <Upload className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
+            
+            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-slate-500">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <span>No Credit Card Required</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <span>Free Templates</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <span>ATS Optimized</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              Everything You Need to Land Your Dream Job
+            </h2>
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+              Our resume builder is packed with features to help you create the perfect resume
+            </p>
           </div>
           
-          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-slate-500">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
-              <span>No Credit Card Required</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
-              <span>Free Templates</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
-              <span>ATS Optimized</span>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            {features.map((feature, index) => (
+              <Card 
+                key={index}
+                className="border-violet-100 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white/80 backdrop-blur-sm"
+              >
+                <CardContent className="p-4 md:p-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 md:mb-4 text-white group-hover:scale-110 transition-transform duration-200">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-base md:text-xl font-semibold text-slate-800 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-slate-600">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              Choose Your Plan
+            </h2>
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+              Select the perfect plan for your resume building needs
+            </p>
+          </div>
+
+          {/* Desktop View */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <Card 
+                key={index}
+                className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
+                  plan.popular ? 'ring-2 ring-violet-500 shadow-lg md:transform md:scale-105' : 'hover:border-violet-200'
+                }`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+                <CardContent className="p-6 md:p-8">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+                    <div className="flex items-baseline justify-center">
+                      <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+                      <span className="text-slate-600 ml-2">/{plan.period}</span>
+                    </div>
+                  </div>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center">
+                        <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
+                        <span className="text-slate-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    className={`w-full h-12 hover:text-black bg-slate-100 ${
+                      plan.popular 
+                        ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
+                        : 'border-violet-200 text-violet-600 hover:bg-violet-50'
+                    }`}
+                    variant={plan.popular ? 'default' : 'outline'}
+                    onClick={() => setShowAuth(true)}
+                  >
+                    Get Started
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Mobile Horizontal Scrolling View */}
+          <div className="md:hidden">
+            <Carousel className="w-full max-w-sm mx-auto">
+              <CarouselContent>
+                {pricingPlans.map((plan, index) => (
+                  <CarouselItem key={index}>
+                    <Card 
+                      className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
+                        plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
+                      }`}
+                    >
+                      {plan.popular && (
+                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                          <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
+                            Most Popular
+                          </Badge>
+                        </div>
+                      )}
+                      <CardContent className="p-6">
+                        <div className="text-center mb-6">
+                          <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+                          <div className="flex items-baseline justify-center">
+                            <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+                            <span className="text-slate-600 ml-2">/{plan.period}</span>
+                          </div>
+                        </div>
+                        
+                        <ul className="space-y-3 mb-8">
+                          {plan.features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-center">
+                              <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
+                              <span className="text-slate-600 text-sm">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        
+                        <Button 
+                          className={`w-full h-12 hover:text-black bg-slate-100 ${
+                            plan.popular 
+                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
+                              : 'border-violet-200 text-violet-600 hover:bg-violet-50'
+                          }`}
+                          variant={plan.popular ? 'default' : 'outline'}
+                          onClick={() => setShowAuth(true)}
+                        >
+                          Get Started
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20">
+          <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Build Your Perfect Resume?
+              </h2>
+              <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                Join thousands of job seekers who have successfully landed interviews with our ATS-optimized resumes
+              </p>
+              <Button 
+                size="lg"
+                onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
+                className="bg-white text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg font-semibold h-14"
+              >
+                Create Your Resume Now
+              </Button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-            Everything You Need to Land Your Dream Job
-          </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-            Our resume builder is packed with features to help you create the perfect resume
-          </p>
-        </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {features.map((feature, index) => (
-            <Card 
-              key={index}
-              className="border-violet-100 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white/80 backdrop-blur-sm"
-            >
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform duration-200">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-slate-600">
-                  {feature.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-            Choose Your Plan
-          </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-            Select the perfect plan for your resume building needs
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {pricingPlans.map((plan, index) => (
-            <Card 
-              key={index}
-              className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
-                plan.popular ? 'ring-2 ring-violet-500 shadow-lg md:transform md:scale-105' : 'hover:border-violet-200'
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
-                    Most Popular
-                  </Badge>
-                </div>
-              )}
-              <CardContent className="p-6 md:p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
-                    <span className="text-slate-600 ml-2">/{plan.period}</span>
+        {/* Footer */}
+        <footer className="bg-slate-900 text-white">
+          <div className="container mx-auto px-4 py-12">
+            {/* Desktop Footer */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div className="md:col-span-1">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">resume.io</h3>
+                  </div>
+                  <p className="text-slate-400 mb-6 max-w-sm">
+                    Create professional, ATS-optimized resumes that help you land your dream job. Fast, easy, and effective.
+                  </p>
+                  <div className="flex space-x-4">
+                    <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                      <Twitter className="w-5 h-5" />
+                    </a>
+                    <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                      <Github className="w-5 h-5" />
+                    </a>
                   </div>
                 </div>
                 
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
-                      <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
-                      <span className="text-slate-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button 
-                  className={`w-full h-12 hover:text-black bg-slate-100 ${
-                    plan.popular 
-                      ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                      : 'border-violet-200 text-violet-600 hover:bg-violet-50'
-                  }`}
-                  variant={plan.popular ? 'default' : 'outline'}
-                  onClick={() => setShowAuth(true)}
-                >
-                  Get Started
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
-        <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-black/10"></div>
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Build Your Perfect Resume?
-            </h2>
-            <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Join thousands of job seekers who have successfully landed interviews with our ATS-optimized resumes
-            </p>
-            <Button 
-              size="lg"
-              onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-              className="bg-white text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg font-semibold h-14"
-            >
-              Create Your Resume Now
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white">
-        <div className="container mx-auto px-4 py-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
-            <div className="col-span-2 md:col-span-1 mb-4 md:mb-0">
-              <div className="flex items-center justify-center md:justify-start space-x-2 mb-2">
-                <div className="w-4 h-4 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
-                  <FileText className="w-2 h-2 text-white" />
+                <div>
+                  <h4 className="font-semibold text-lg mb-4">Product</h4>
+                  <ul className="space-y-3 text-slate-400">
+                    <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Examples</a></li>
+                  </ul>
                 </div>
-                <h3 className="text-sm font-bold">resume.io</h3>
+                
+                <div>
+                  <h4 className="font-semibold text-lg mb-4">Resources</h4>
+                  <ul className="space-y-3 text-slate-400">
+                    <li><a href="#" className="hover:text-white transition-colors">Career Tips</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Interview Guide</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-lg mb-4">Contact</h4>
+                  <ul className="space-y-3 text-slate-400">
+                    <li className="flex items-center">
+                      <Mail className="w-4 h-4 mr-2" />
+                      <span>support@resume.io</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Phone className="w-4 h-4 mr-2" />
+                      <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li className="flex items-center">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      <span>San Francisco, CA</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p className="text-slate-400 text-xs">
-                Create professional, ATS-optimized resumes.
-              </p>
+              
+              <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p className="text-slate-400 text-sm mb-4 md:mb-0">
+                  &copy; 2024 resume.io. All rights reserved.
+                </p>
+                <div className="flex space-x-6 text-sm text-slate-400">
+                  <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                  <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                  <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+              </div>
             </div>
-            
-            <div>
-              <h4 className="font-semibold mb-2 text-xs">Product</h4>
-              <ul className="space-y-1 text-slate-400 text-xs">
-                <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-2 text-xs">Support</h4>
-              <ul className="space-y-1 text-slate-400 text-xs">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-2 text-xs">Legal</h4>
-              <ul className="space-y-1 text-slate-400 text-xs">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              </ul>
+
+            {/* Mobile Footer */}
+            <div className="md:hidden">
+              <div className="text-center mb-8">
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">resume.io</h3>
+                </div>
+                <p className="text-slate-400 text-sm mb-6 max-w-xs mx-auto">
+                  Create professional, ATS-optimized resumes that help you land your dream job.
+                </p>
+                <div className="flex justify-center space-x-6">
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <Twitter className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                    <Github className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 className="font-semibold mb-4">Product</h4>
+                  <ul className="space-y-2 text-sm text-slate-400">
+                    <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4">Support</h4>
+                  <ul className="space-y-2 text-sm text-slate-400">
+                    <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border-t border-slate-800 pt-6 text-center">
+                <p className="text-slate-400 text-xs mb-4">
+                  &copy; 2024 resume.io. All rights reserved.
+                </p>
+                <div className="flex justify-center space-x-4 text-xs text-slate-400">
+                  <a href="#" className="hover:text-white transition-colors">Privacy</a>
+                  <a href="#" className="hover:text-white transition-colors">Terms</a>
+                  <a href="#" className="hover:text-white transition-colors">Cookies</a>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div className="border-t border-slate-800 mt-3 pt-2 text-center text-slate-400 text-xs">
-            <p>&copy; 2024 resume.io. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
 
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={showAuth} 
-        onClose={() => setShowAuth(false)}
-        onLogin={() => {
-          setIsLoggedIn(true);
-          setShowAuth(false);
-        }}
-      />
+      {/* Auth Modal/Bottom Sheet */}
+      {isMobile ? (
+        <MobileAuthBottomSheet 
+          isOpen={showAuth} 
+          onClose={() => setShowAuth(false)}
+          onLogin={() => {
+            setIsLoggedIn(true);
+            setShowAuth(false);
+          }}
+        />
+      ) : (
+        <AuthModal 
+          isOpen={showAuth} 
+          onClose={() => setShowAuth(false)}
+          onLogin={() => {
+            setIsLoggedIn(true);
+            setShowAuth(false);
+          }}
+        />
+      )}
 
-      {/* ATS Score Modal */}
-      <ATSScoreModal 
-        isOpen={showATSChecker} 
-        onClose={() => setShowATSChecker(false)}
-      />
+      {/* ATS Score Modal/Bottom Sheet */}
+      {isMobile ? (
+        <MobileATSBottomSheet 
+          isOpen={showATSChecker} 
+          onClose={() => setShowATSChecker(false)}
+        />
+      ) : (
+        <ATSScoreModal 
+          isOpen={showATSChecker} 
+          onClose={() => setShowATSChecker(false)}
+        />
+      )}
     </div>
   );
 };
