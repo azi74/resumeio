@@ -66,7 +66,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
 
       <div className="space-y-6">
         {fields.map((field, index) => (
-          <Card key={field.id} className="border-violet-100">
+          <Card key={field.id} className="bg-white border-violet-100">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center">
@@ -78,7 +78,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                     variant="outline" 
                     size="sm"
                     onClick={() => remove(index)}
-                    className="border-red-200 text-red-600 hover:bg-red-50"
+                    className="border-red-200 text-red-600 bg-red hover:text-red-50 hover:bg-red-500"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -91,7 +91,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                   <Label className="text-slate-700">Job Title *</Label>
                   <Input 
                     placeholder="Senior Software Engineer"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`experiences.${index}.jobTitle`, { required: true })}
                   />
                 </div>
@@ -99,7 +99,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                   <Label className="text-slate-700">Company *</Label>
                   <Input 
                     placeholder="Google Inc."
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`experiences.${index}.company`, { required: true })}
                   />
                 </div>
@@ -110,7 +110,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                   <Label className="text-slate-700">Location</Label>
                   <Input 
                     placeholder="San Francisco, CA"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`experiences.${index}.location`)}
                   />
                 </div>
@@ -118,7 +118,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                   <Label className="text-slate-700">Start Date *</Label>
                   <Input 
                     type="month"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-black focus:border-violet-500"
                     {...form.register(`experiences.${index}.startDate`, { required: true })}
                   />
                 </div>
@@ -127,7 +127,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                   <Input 
                     type="month"
                     placeholder="Present"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`experiences.${index}.endDate`)}
                   />
                 </div>
@@ -137,7 +137,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
                 <Label className="text-slate-700">Job Description</Label>
                 <Textarea 
                   placeholder="• Led a team of 5 developers in building scalable web applications&#10;• Implemented microservices architecture reducing system latency by 40%&#10;• Mentored junior developers and conducted code reviews"
-                  className="min-h-[100px] border-violet-200 focus:border-violet-500"
+                  className="min-h-[100px] border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                   {...form.register(`experiences.${index}.description`)}
                 />
                 <p className="text-xs text-slate-500">
@@ -151,7 +151,7 @@ const WorkExperienceForm = ({ onDataChange, data }: WorkExperienceFormProps) => 
         <Button 
           onClick={addExperience}
           variant="outline"
-          className="w-full border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
+          className="w-full bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Another Experience

@@ -64,7 +64,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
 
       <div className="space-y-6">
         {fields.map((field, index) => (
-          <Card key={field.id} className="border-violet-100">
+          <Card key={field.id} className="border-violet-100 bg-white">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center">
@@ -76,7 +76,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                     variant="outline" 
                     size="sm"
                     onClick={() => remove(index)}
-                    className="border-red-200 text-red-600 hover:bg-red-50"
+                    className="border-red-200 text-red-600 bg-white hover:bg-red-500"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -89,7 +89,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                   <Label className="text-slate-700">Project Name *</Label>
                   <Input 
                     placeholder="E-commerce Platform"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`projects.${index}.name`, { required: true })}
                   />
                 </div>
@@ -97,7 +97,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                   <Label className="text-slate-700">Date Completed</Label>
                   <Input 
                     type="month"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`projects.${index}.date`)}
                   />
                 </div>
@@ -107,7 +107,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                 <Label className="text-slate-700">Description *</Label>
                 <Textarea 
                   placeholder="Built a full-stack e-commerce platform with user authentication, payment processing, and admin dashboard. Implemented responsive design and optimized for performance."
-                  className="min-h-[80px] border-violet-200 focus:border-violet-500"
+                  className="min-h-[80px] bg-white placeholder:text-slate-400 border-violet-200 focus:border-violet-500"
                   {...form.register(`projects.${index}.description`, { required: true })}
                 />
               </div>
@@ -116,7 +116,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                 <Label className="text-slate-700">Technologies Used</Label>
                 <Input 
                   placeholder="React, Node.js, MongoDB, Stripe API, AWS"
-                  className="border-violet-200 focus:border-violet-500"
+                  className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                   {...form.register(`projects.${index}.technologies`)}
                 />
                 <p className="text-xs text-slate-500">
@@ -131,7 +131,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                     <Github className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                     <Input 
                       placeholder="https://github.com/username/project"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                       {...form.register(`projects.${index}.githubUrl`)}
                     />
                   </div>
@@ -142,7 +142,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
                     <Globe className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                     <Input 
                       placeholder="https://myproject.com"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                       {...form.register(`projects.${index}.liveUrl`)}
                     />
                   </div>
@@ -155,7 +155,7 @@ const ProjectsForm = ({ onDataChange, data }: ProjectsFormProps) => {
         <Button 
           onClick={addProject}
           variant="outline"
-          className="w-full border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
+          className="w-full bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Another Project

@@ -151,7 +151,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                   <Input 
                     id="website"
                     placeholder="https://johndoe.dev"
-                    className="pl-10 border-violet-200 focus:border-violet-500"
+                    className="pl-10 border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register("website")}
                   />
                 </div>
@@ -163,7 +163,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                   <Input 
                     id="linkedin"
                     placeholder="linkedin.com/in/johndoe"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register("linkedin")}
                   />
                 </div>
@@ -175,7 +175,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
                     <Input 
                       id="github"
                       placeholder="github.com/johndoe"
-                      className="pl-10 border-violet-200 focus:border-violet-500"
+                      className="pl-10 border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                       {...form.register("github")}
                     />
                   </div>
@@ -185,7 +185,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
           </Card>
 
           {/* Professional Summary */}
-          <Card className="border-violet-100">
+          <Card className="border-violet-100 bg-white">
             <CardHeader>
               <CardTitle className="text-lg">Professional Summary</CardTitle>
               <p className="text-sm text-slate-600">Write a brief overview of your professional background</p>
@@ -193,7 +193,7 @@ const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) =
             <CardContent>
               <Textarea 
                 placeholder="Experienced software engineer with 5+ years of expertise in full-stack development, specializing in React, Node.js, and cloud technologies. Proven track record of delivering scalable solutions and leading cross-functional teams..."
-                className="min-h-[120px] border-violet-200 focus:border-violet-500"
+                className="min-h-[120px] bg-white placeholder:text-slate-400 border-violet-200 focus:border-violet-500"
                 {...form.register("summary")}
               />
               <p className="text-xs text-slate-500 mt-2">

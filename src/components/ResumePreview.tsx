@@ -51,10 +51,9 @@ const ResumePreview = ({ resumeData, onBack, onEdit }: ResumePreviewProps) => {
               <Button 
                 variant="ghost" 
                 onClick={onBack}
-                className="text-slate-600 hover:text-violet-600"
+                className="text-slate-600 bg-white hover:bg-violet-500 hover:text-white"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Builder
               </Button>
               <div className="text-slate-400">|</div>
               <h1 className="text-xl font-semibold text-slate-800">Resume Preview</h1>
@@ -64,7 +63,7 @@ const ResumePreview = ({ resumeData, onBack, onEdit }: ResumePreviewProps) => {
               <Button 
                 variant="outline"
                 onClick={onEdit}
-                className="border-violet-200 text-violet-600 hover:bg-violet-50"
+                className="border-violet-200 bg-white hover:text-black text-violet-600 hover:bg-violet-50"
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
@@ -80,7 +79,7 @@ const ResumePreview = ({ resumeData, onBack, onEdit }: ResumePreviewProps) => {
                 <Button 
                   variant="outline"
                   onClick={() => handleShare('linkedin')}
-                  className="border-violet-200 text-violet-600 hover:bg-violet-50"
+                  className="border-violet-200 bg-white hover:text-black text-violet-600 hover:bg-violet-50"
                 >
                   <Share className="w-4 h-4 mr-2" />
                   Share

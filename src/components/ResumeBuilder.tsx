@@ -96,20 +96,19 @@ const ResumeBuilder = ({ onBack }: ResumeBuilderProps) => {
             <Button 
               variant="ghost" 
               onClick={onBack}
-              className="text-slate-600 hover:text-violet-600"
+              className="text-slate-600 hover:bg-violet-500 hover:text-white"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
             </Button>
             <div className="text-slate-400">|</div>
-            <h1 className="text-xl font-semibold text-slate-800">Resume Builder</h1>
+            <h1 className="text-xl font-semibold text-slate-800">Build Your Resume</h1>
           </div>
           
           <div className="flex items-center space-x-3">
             <Button 
               variant="outline"
               onClick={() => setShowPreview(true)}
-              className="bg-white hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50"
+              className="bg-white hover:text-black hover:border-violet-500 border-violet-200 text-violet-600 hover:bg-violet-50"
             >
               <Eye className="w-4 h-4 mr-2" />
               Preview
@@ -154,7 +153,7 @@ const ResumeBuilder = ({ onBack }: ResumeBuilderProps) => {
                   variant="outline"
                   onClick={handlePrevious}
                   disabled={currentStep === 0}
-                  className="border-violet-200 text-violet-600 hover:bg-violet-50"
+                  className="border-violet-200 hover:text-black bg-white hover:border-violet-500 text-violet-600 hover:bg-violet-50"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Previous

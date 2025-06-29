@@ -52,7 +52,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
       </div>
 
       {fields.length === 0 ? (
-        <Card className="border-violet-100 border-dashed">
+        <Card className="border-violet-100 border-dashed bg-white">
           <CardContent className="p-12 text-center">
             <Award className="w-12 h-12 text-slate-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-slate-600 mb-2">No certifications yet</h3>
@@ -61,7 +61,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
             </p>
             <Button 
               onClick={addCertification}
-              className="bg-violet-500 hover:bg-violet-600 text-white"
+              className="bg-violet-500 p-6 hover:bg-violet-600 text-white"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Your First Certification

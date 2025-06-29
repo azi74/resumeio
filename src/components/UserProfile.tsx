@@ -77,10 +77,10 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
             <Button 
               variant="ghost" 
               onClick={onBack}
-              className="text-slate-600 hover:text-violet-600 p-1 md:p-2"
+              className="text-slate-600 hover:bg-violet-500 hover:text-violet-600 p-1 md:p-2"
             >
               <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-              <span className="text-sm md:text-base">Back</span>
+              <span className="text-sm md:text-base"></span>
             </Button>
             <div className="text-slate-400 hidden md:block">|</div>
             <h1 className="text-lg md:text-xl font-semibold text-slate-800">My Profile</h1>
@@ -166,13 +166,13 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
 
           <Tabs defaultValue="resumes" className="w-full">
             <TabsList className="grid w-full grid-cols-3 bg-violet-50 mb-6 md:mb-8 h-10 md:h-12">
-              <TabsTrigger value="resumes" className="text-xs md:text-sm data-[state=active]:bg-white">
+              <TabsTrigger value="resumes" className="text-xs md:text-sm text-black data-[state=active]:bg-white">
                 My Resumes
               </TabsTrigger>
-              <TabsTrigger value="templates" className="text-xs md:text-sm data-[state=active]:bg-white">
+              <TabsTrigger value="templates" className="text-xs md:text-sm text-black data-[state=active]:bg-white">
                 Templates
               </TabsTrigger>
-              <TabsTrigger value="certifications" className="text-xs md:text-sm data-[state=active]:bg-white">
+              <TabsTrigger value="certifications" className="text-xs md:text-sm text-black data-[state=active]:bg-white">
                 Certifications
               </TabsTrigger>
             </TabsList>

@@ -127,7 +127,7 @@ const TemplateSelector = ({ onDataChange, data }: TemplateSelectorProps) => {
                 )}
               </div>
 
-              <div className="p-4">
+              <div className="p-4 bg-white">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-slate-800">{template.name}</h3>
                   <Badge 
@@ -148,7 +148,7 @@ const TemplateSelector = ({ onDataChange, data }: TemplateSelectorProps) => {
                   className={`w-full ${
                     selectedTemplate === template.id 
                       ? "bg-violet-500 hover:bg-violet-600 text-white" 
-                      : "border-violet-200 text-violet-600 hover:bg-violet-50"
+                      : "border-violet-200 bg-white hover:text-black text-violet-600 hover:bg-violet-50"
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();

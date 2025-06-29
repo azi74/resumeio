@@ -87,7 +87,7 @@ const ATSScoreModal = ({ isOpen, onClose }: ATSScoreModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl bg-white border-transparent max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold text-slate-800">
@@ -137,7 +137,7 @@ const ATSScoreModal = ({ isOpen, onClose }: ATSScoreModalProps) => {
               </div>
             ) : (
               <div className="space-y-4">
-                <Card className="border-violet-100">
+                <Card className="bg-white border-violet-100">
                   <CardContent className="p-4">
                     <div className="flex items-center space-x-3">
                       <FileText className="w-8 h-8 text-violet-600" />
@@ -151,7 +151,7 @@ const ATSScoreModal = ({ isOpen, onClose }: ATSScoreModalProps) => {
                         variant="outline"
                         size="sm"
                         onClick={() => setFile(null)}
-                        className="border-red-200 text-red-600 hover:bg-red-50"
+                        className="border-red-200 bg-red-700 text-white hover:bg-red-950"
                       >
                         Remove
                       </Button>

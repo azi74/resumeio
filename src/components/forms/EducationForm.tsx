@@ -63,7 +63,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
 
       <div className="space-y-6">
         {fields.map((field, index) => (
-          <Card key={field.id} className="border-violet-100">
+          <Card key={field.id} className="bg-white border-violet-100">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center">
@@ -75,7 +75,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                     variant="outline" 
                     size="sm"
                     onClick={() => remove(index)}
-                    className="border-red-200 text-red-600 hover:bg-red-50"
+                    className="border-red-200 bg-white text-red-600 hover:bg-red-500"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -88,7 +88,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">Degree *</Label>
                   <Input 
                     placeholder="Bachelor of Science"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`education.${index}.degree`, { required: true })}
                   />
                 </div>
@@ -96,7 +96,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">Field of Study *</Label>
                   <Input 
                     placeholder="Computer Science"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="bg-white placeholder:text-slate-400 border-violet-200 focus:border-violet-500"
                     {...form.register(`education.${index}.field`, { required: true })}
                   />
                 </div>
@@ -107,7 +107,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">School/University *</Label>
                   <Input 
                     placeholder="Stanford University"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`education.${index}.school`, { required: true })}
                   />
                 </div>
@@ -115,7 +115,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">Location</Label>
                   <Input 
                     placeholder="Stanford, CA"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`education.${index}.location`)}
                   />
                 </div>
@@ -126,7 +126,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">Graduation Date</Label>
                   <Input 
                     type="month"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`education.${index}.graduationDate`)}
                   />
                 </div>
@@ -134,7 +134,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
                   <Label className="text-slate-700">GPA (Optional)</Label>
                   <Input 
                     placeholder="3.8/4.0"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                     {...form.register(`education.${index}.gpa`)}
                   />
                 </div>
@@ -146,7 +146,7 @@ const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
         <Button 
           onClick={addEducation}
           variant="outline"
-          className="w-full border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
+          className="w-full bg-white placeholder:text-slate-400 hover:text-black border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Another Education

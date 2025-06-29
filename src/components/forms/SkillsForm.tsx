@@ -70,9 +70,9 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Technical Skills */}
-        <Card className="border-violet-100">
+        <Card className="border-violet-100 bg-white">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center">
+            <CardTitle className="text-lg flex items-center ">
               <Code className="w-5 h-5 mr-2 text-violet-600" />
               Technical Skills
             </CardTitle>
@@ -84,7 +84,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                 value={newTechnicalSkill}
                 onChange={(e) => setNewTechnicalSkill(e.target.value)}
                 placeholder="Add a technical skill"
-                className="border-violet-200 focus:border-violet-500"
+                className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                 onKeyPress={(e) => e.key === 'Enter' && addTechnicalSkill()}
               />
               <Button 
@@ -100,7 +100,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                 <Badge 
                   key={skill}
                   variant="secondary"
-                  className="bg-violet-100 text-violet-700 hover:bg-violet-200 pr-1"
+                  className="bg-violet-100 h-8 text-violet-700 hover:bg-violet-200 pr-1"
                 >
                   {skill}
                   <Button
@@ -128,7 +128,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                         setTechnicalSkills([...technicalSkills, skill]);
                       }
                     }}
-                    className="border-violet-200 text-violet-600 hover:bg-violet-50 text-xs"
+                    className="border-violet-200 bg-white hover:text-black text-violet-600 hover:bg-violet-50 text-xs"
                     disabled={technicalSkills.includes(skill)}
                   >
                     + {skill}
@@ -140,7 +140,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
         </Card>
 
         {/* Soft Skills */}
-        <Card className="border-violet-100">
+        <Card className="border-violet-100 bg-white">
           <CardHeader>
             <CardTitle className="text-lg flex items-center">
               <Wrench className="w-5 h-5 mr-2 text-violet-600" />
@@ -154,7 +154,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                 value={newSoftSkill}
                 onChange={(e) => setNewSoftSkill(e.target.value)}
                 placeholder="Add a soft skill"
-                className="border-violet-200 focus:border-violet-500"
+                className="border-violet-200 bg-white placeholder:text-slate-400 focus:border-violet-500"
                 onKeyPress={(e) => e.key === 'Enter' && addSoftSkill()}
               />
               <Button 
@@ -170,7 +170,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                 <Badge 
                   key={skill}
                   variant="secondary"
-                  className="bg-blue-100 text-blue-700 hover:bg-blue-200 pr-1"
+                  className="bg-blue-100 h-8 text-blue-700 hover:bg-blue-200 pr-1"
                 >
                   {skill}
                   <Button
@@ -198,7 +198,7 @@ const SkillsForm = ({ onDataChange, data }: SkillsFormProps) => {
                         setSoftSkills([...softSkills, skill]);
                       }
                     }}
-                    className="border-blue-200 text-blue-600 hover:bg-blue-50 text-xs"
+                    className="border-blue-200 bg-white hover:text-blue-900 text-blue-600 hover:bg-blue-50 text-xs"
                     disabled={softSkills.includes(skill)}
                   >
                     + {skill}

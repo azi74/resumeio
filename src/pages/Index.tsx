@@ -156,7 +156,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   onClick={() => setActiveView("profile")}
-                  className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50 h-9 px-3 md:h-10 md:px-4 text-sm"
+                  className="bg-white hover:text-black hover:border-violet-600 border-slate-200 text-slate-700 hover:bg-slate-50 h-9 px-3 md:h-10 md:px-4 text-sm"
                 >
                   Profile
                 </Button>
@@ -213,7 +213,7 @@ const Index = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => setShowATSChecker(true)}
-                className="border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl h-14 md:h-16 w-full sm:w-auto font-semibold"
+                className="border-slate-200 hover:text-black hover:border-violet-500 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl h-14 md:h-16 w-full sm:w-auto font-semibold"
               >
                 Check ATS Score
                 <Upload className="ml-3 w-5 h-5 md:w-6 md:h-6" />
@@ -282,7 +282,7 @@ const Index = () => {
           </div>
 
           {/* Desktop View */}
-          <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
             {pricingPlans.map((plan, index) => (
               <Card 
                 key={index}
@@ -297,7 +297,7 @@ const Index = () => {
                     </Badge>
                   </div>
                 )}
-                <CardContent className="p-8">
+                <CardContent className="flex flex-col flex-grow p-8">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
                     <div className="flex items-baseline justify-center">
@@ -316,10 +316,10 @@ const Index = () => {
                   </ul>
                   
                   <Button 
-                    className={`w-full h-12 ${
+                    className={`mt-auto w-full h-12 ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                        : 'border-slate-200 bg-white text-slate-700 hover:bg-violet-500'
                     }`}
                     variant={plan.popular ? 'default' : 'outline'}
                     onClick={() => setShowAuth(true)}
@@ -396,7 +396,7 @@ const Index = () => {
               <Button 
                 size="lg"
                 onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-                className="bg-white text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-xl font-semibold h-16"
+                className="bg-white hover:text-black text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-xl font-semibold h-16"
               >
                 Create Your Resume Now
               </Button>
@@ -406,10 +406,10 @@ const Index = () => {
 
         {/* Footer */}
         <footer className="bg-slate-900 text-white w-full">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-8">
             {/* Desktop Footer */}
             <div className="hidden md:block">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div className="md:col-span-1">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -423,8 +423,7 @@ const Index = () => {
                     </a>
                   </div>
                 </div>  
-                <div>
-                  <h4 className="font-semibold text-lg mb-4 text-white">Contact</h4>
+                <div className="md:justify-self-end text-right">
                   <ul className="space-y-3 text-slate-400">
                     <li className="flex items-center">
                       <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
@@ -438,9 +437,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="pt-2 flex flex-col md:flex-row justify-between items-center">
-                <p className="text-slate-400 text-sm mb-4 md:mb-0">
-                  &copy; 2024 resume.io
+              <div className="pt-2 flex flex-col md:flex-row justify-center items-center">
+                <p className="text-slate-400 text-center text-sm mb-4 md:mb-0">
+                  &copy; 2025 resume.io
                 </p>
               </div>
             </div>
