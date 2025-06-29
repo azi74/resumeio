@@ -130,12 +130,16 @@ const ResumePreview = ({ resumeData, onBack, onEdit }: ResumePreviewProps) => {
                         <span>{resumeData.personalDetails.email}</span>
                       )}
                       {resumeData.personalDetails?.phone && (
+                        <>
                         <span className="hidden sm:inline">• </span>
                         <span>{resumeData.personalDetails.phone}</span>
+                        </>
                       )}
                       {resumeData.personalDetails?.location && (
+                        <>
                         <span className="hidden sm:inline">• </span>
                         <span>{resumeData.personalDetails.location}</span>
+                        </>
                       )}
                     </div>
                   </div>

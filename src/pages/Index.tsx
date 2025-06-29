@@ -417,42 +417,12 @@ const Index = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white">resume.io</h3>
                   </div>
-                  <p className="text-slate-400 mb-6 max-w-sm">
-                    Create professional, ATS-optimized resumes that help you land your dream job. Fast, easy, and effective.
-                  </p>
                   <div className="flex space-x-4">
-                    <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                      <Linkedin className="w-5 h-5" />
-                    </a>
                     <a href="#" className="text-slate-400 hover:text-white transition-colors">
                       <Github className="w-5 h-5" />
                     </a>
                   </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-lg mb-4 text-white">Product</h4>
-                  <ul className="space-y-3 text-slate-400">
-                    <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Examples</a></li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-lg mb-4 text-white">Resources</h4>
-                  <ul className="space-y-3 text-slate-400">
-                    <li><a href="#" className="hover:text-white transition-colors">Career Tips</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Interview Guide</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                  </ul>
-                </div>
-                
+                </div>  
                 <div>
                   <h4 className="font-semibold text-lg mb-4 text-white">Contact</h4>
                   <ul className="space-y-3 text-slate-400">
@@ -461,26 +431,17 @@ const Index = () => {
                       <span>support@resume.io</span>
                     </li>
                     <li className="flex items-center">
-                      <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>+1 (555) 123-4567</span>
-                    </li>
-                    <li className="flex items-center">
                       <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>San Francisco, CA</span>
+                      <span>Kerala, India</span>
                     </li>
                   </ul>
                 </div>
               </div>
               
-              <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <div className="pt-2 flex flex-col md:flex-row justify-between items-center">
                 <p className="text-slate-400 text-sm mb-4 md:mb-0">
-                  &copy; 2024 resume.io. All rights reserved.
+                  &copy; 2024 resume.io
                 </p>
-                <div className="flex space-x-6 text-sm text-slate-400">
-                  <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                  <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                  <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
-                </div>
               </div>
             </div>
 
@@ -493,50 +454,18 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-bold text-white">resume.io</h3>
                 </div>
-                <p className="text-slate-400 text-sm mb-6 max-w-xs mx-auto">
-                  Create professional, ATS-optimized resumes that help you land your dream job.
-                </p>
                 <div className="flex justify-center space-x-6">
-                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                    <Twitter className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
                   <a href="#" className="text-slate-400 hover:text-white transition-colors">
                     <Github className="w-5 h-5" />
                   </a>
                 </div>
               </div>
-              
-              <div className="grid grid-cols-2 gap-8 mb-8">
-                <div>
-                  <h4 className="font-semibold mb-4 text-white">Product</h4>
-                  <ul className="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">ATS Scanner</a></li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-4 text-white">Support</h4>
-                  <ul className="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                  </ul>
-                </div>
-              </div>
-              
               <div className="border-t border-slate-800 pt-6 text-center">
                 <p className="text-slate-400 text-xs mb-4">
-                  &copy; 2024 resume.io. All rights reserved.
+                  &copy; 2024 resume.io
                 </p>
                 <div className="flex justify-center space-x-4 text-xs text-slate-400">
                   <a href="#" className="hover:text-white transition-colors">Privacy</a>
-                  <a href="#" className="hover:text-white transition-colors">Terms</a>
-                  <a href="#" className="hover:text-white transition-colors">Cookies</a>
                 </div>
               </div>
             </div>
