@@ -138,9 +138,9 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       {/* Header */}
-      <header className={`border-b border-violet-100 bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+      <header className={`border-b border-slate-200 bg-white/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
         isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -157,7 +157,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   onClick={() => setActiveView("profile")}
-                  className="bg-white border-violet-200 text-violet-600 hover:bg-violet-50 h-12 px-6"
+                  className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50 h-12 px-6"
                 >
                   Profile
                 </Button>
@@ -185,7 +185,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-12 md:py-20 text-center">
           <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-white text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
+            <Badge className="mb-6 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors">
               ✨ High ATS Score Guaranteed
             </Badge>
             
@@ -214,7 +214,7 @@ const Index = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => setShowATSChecker(true)}
-                className="border-violet-200 bg-white text-violet-600 hover:bg-violet-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:text-black px-8 py-6 text-lg h-14 w-full sm:w-auto"
+                className="border-slate-200 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-lg h-14 w-full sm:w-auto"
               >
                 Check ATS Score
                 <Upload className="ml-2 w-5 h-5" />
@@ -223,15 +223,15 @@ const Index = () => {
             
             <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-slate-500">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                 <span>No Credit Card Required</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                 <span>Free Templates</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full border border-slate-300"></div>
+                <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                 <span>ATS Optimized</span>
               </div>
             </div>
@@ -253,7 +253,7 @@ const Index = () => {
             {features.map((feature, index) => (
               <Card 
                 key={index}
-                className="border-violet-100 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white/80 backdrop-blur-sm"
+                className="border-slate-200 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white"
               >
                 <CardContent className="p-4 md:p-6">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 md:mb-4 text-white group-hover:scale-110 transition-transform duration-200">
@@ -287,7 +287,7 @@ const Index = () => {
             {pricingPlans.map((plan, index) => (
               <Card 
                 key={index}
-                className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
+                className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl ${
                   plan.popular ? 'ring-2 ring-violet-500 shadow-lg md:transform md:scale-105' : 'hover:border-violet-200'
                 }`}
               >
@@ -317,10 +317,10 @@ const Index = () => {
                   </ul>
                   
                   <Button 
-                    className={`w-full h-12 hover:text-black bg-slate-100 ${
+                    className={`w-full h-12 ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                        : 'border-violet-200 text-violet-600 hover:bg-violet-50'
+                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                     }`}
                     variant={plan.popular ? 'default' : 'outline'}
                     onClick={() => setShowAuth(true)}
@@ -339,7 +339,7 @@ const Index = () => {
                 {pricingPlans.map((plan, index) => (
                   <CarouselItem key={index}>
                     <Card 
-                      className={`relative border-violet-100 bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl ${
+                      className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl ${
                         plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
                       }`}
                     >
@@ -369,10 +369,10 @@ const Index = () => {
                         </ul>
                         
                         <Button 
-                          className={`w-full h-12 hover:text-black bg-slate-100 ${
+                          className={`w-full h-12 ${
                             plan.popular 
                               ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                              : 'border-violet-200 text-violet-600 hover:bg-violet-50'
+                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                           }`}
                           variant={plan.popular ? 'default' : 'outline'}
                           onClick={() => setShowAuth(true)}
@@ -384,8 +384,8 @@ const Index = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50" />
+              <CarouselNext className="bg-white border-slate-200 text-slate-700 hover:bg-slate-50" />
             </Carousel>
           </div>
         </section>
@@ -393,7 +393,7 @@ const Index = () => {
         {/* CTA Section */}
         <section className="container mx-auto px-4 py-12 md:py-20">
           <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute inset-0 bg-black/5"></div>
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Build Your Perfect Resume?
@@ -423,7 +423,7 @@ const Index = () => {
                     <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
                       <FileText className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold">resume.io</h3>
+                    <h3 className="text-2xl font-bold text-white">resume.io</h3>
                   </div>
                   <p className="text-slate-400 mb-6 max-w-sm">
                     Create professional, ATS-optimized resumes that help you land your dream job. Fast, easy, and effective.
@@ -442,7 +442,7 @@ const Index = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-lg mb-4">Product</h4>
+                  <h4 className="font-semibold text-lg mb-4 text-white">Product</h4>
                   <ul className="space-y-3 text-slate-400">
                     <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
                     <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
@@ -452,7 +452,7 @@ const Index = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-lg mb-4">Resources</h4>
+                  <h4 className="font-semibold text-lg mb-4 text-white">Resources</h4>
                   <ul className="space-y-3 text-slate-400">
                     <li><a href="#" className="hover:text-white transition-colors">Career Tips</a></li>
                     <li><a href="#" className="hover:text-white transition-colors">Interview Guide</a></li>
@@ -462,7 +462,7 @@ const Index = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-lg mb-4">Contact</h4>
+                  <h4 className="font-semibold text-lg mb-4 text-white">Contact</h4>
                   <ul className="space-y-3 text-slate-400">
                     <li className="flex items-center">
                       <Mail className="w-4 h-4 mr-2" />
@@ -499,7 +499,7 @@ const Index = () => {
                   <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
                     <FileText className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold">resume.io</h3>
+                  <h3 className="text-xl font-bold text-white">resume.io</h3>
                 </div>
                 <p className="text-slate-400 text-sm mb-6 max-w-xs mx-auto">
                   Create professional, ATS-optimized resumes that help you land your dream job.
@@ -519,7 +519,7 @@ const Index = () => {
               
               <div className="grid grid-cols-2 gap-8 mb-8">
                 <div>
-                  <h4 className="font-semibold mb-4">Product</h4>
+                  <h4 className="font-semibold mb-4 text-white">Product</h4>
                   <ul className="space-y-2 text-sm text-slate-400">
                     <li><a href="#" className="hover:text-white transition-colors">Resume Builder</a></li>
                     <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
@@ -528,7 +528,7 @@ const Index = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-4">Support</h4>
+                  <h4 className="font-semibold mb-4 text-white">Support</h4>
                   <ul className="space-y-2 text-sm text-slate-400">
                     <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                     <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
