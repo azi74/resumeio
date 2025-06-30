@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
@@ -7,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { X, User, Mail, Lock } from "lucide-react";
+import { useGoogleLogin } from "@react-oauth/google";
 
 interface MobileAuthBottomSheetProps {
   isOpen: boolean;
@@ -35,13 +35,30 @@ const MobileAuthBottomSheet = ({ isOpen, onClose, onLogin }: MobileAuthBottomShe
     }, 1000);
   };
 
-  const handleGoogleAuth = () => {
-    setIsLoading(true);
-    setTimeout(() => {
+  const loginWithGoogle = useGoogleLogin({
+    flow: "implicit",
+    onSuccess: async (tokenResponse) => {
+      try {
+        setIsLoading(true);
+        const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+          },
+        });
+        const user = await res.json();
+        console.log("Google User Info", user);
+        onLogin(); 
+      } catch (error) {
+        console.error("Google login failed", error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    onError: () => {
       setIsLoading(false);
-      onLogin();
-    }, 1000);
-  };
+      alert("Google login failed");
+    },
+  });
 
   return (
     <Drawer open={isOpen} onOpenChange={onClose}>
@@ -123,7 +140,7 @@ const MobileAuthBottomSheet = ({ isOpen, onClose, onLogin }: MobileAuthBottomShe
                 <Button 
                   type="button"
                   variant="outline"
-                  onClick={handleGoogleAuth}
+                  onClick={() => loginWithGoogle()}
                   className="w-full bg-white/90 backdrop-blur-sm border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
                   disabled={isLoading}
                 >
@@ -202,7 +219,7 @@ const MobileAuthBottomSheet = ({ isOpen, onClose, onLogin }: MobileAuthBottomShe
                 <Button 
                   type="button"
                   variant="outline"
-                  onClick={handleGoogleAuth}
+                  onClick={() => loginWithGoogle()}
                   className="w-full bg-white/90 backdrop-blur-sm border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
                   disabled={isLoading}
                 >
