@@ -153,7 +153,7 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
                     <Button 
                       variant="outline" 
                       onClick={() => setShowLogoutConfirm(true)}
-                      className="border-red-200 bg-white hover:text-red-500 text-red-600 hover:bg-red-50 h-12 px-6"
+                      className="border-red-200 bg-white bg-white hover:text-red-500 text-red-600 hover:bg-red-50 h-12 px-6"
                     >
                       <LogOut className="w-4 h-4 mr-2" />
                       Logout
@@ -318,10 +318,10 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
 
       {/* Logout Confirmation Dialog */}
       <Dialog open={showLogoutConfirm} onOpenChange={setShowLogoutConfirm}>
-        <DialogContent className="sm:max-w-md mx-4">
+        <DialogContent className="sm:max-w-md mx-4 border-violet-500 bg-white">
           <DialogHeader>
-            <DialogTitle className="text-lg md:text-xl">Confirm Logout</DialogTitle>
-            <DialogDescription className="text-sm md:text-base">
+            <DialogTitle className="text-red-700 text-lg md:text-xl">Confirm Logout</DialogTitle>
+            <DialogDescription className="text-black text-sm md:text-base">
               Are you sure you want to logout? You'll need to sign in again to access your profile and resumes.
             </DialogDescription>
           </DialogHeader>
@@ -329,13 +329,13 @@ const UserProfile = ({ onBack }: UserProfileProps) => {
             <Button 
               variant="outline" 
               onClick={() => setShowLogoutConfirm(false)}
-              className="w-full md:w-auto"
+              className="w-full bg-white border-violet-500 text-black hover:text-white hover:bg-violet-400 md:w-auto"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleLogout}
-              className="w-full md:w-auto bg-red-600 hover:bg-red-700 text-white"
+              className="w-full md:w-auto bg-red-600 hover:bg-red-800 text-white"
             >
               <LogOut className="w-4 h-4 mr-2" />
               Logout

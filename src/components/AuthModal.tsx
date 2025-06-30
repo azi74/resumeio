@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -7,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { X, User, Mail, Lock } from "lucide-react";
+import { useGoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -37,14 +38,30 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
     }, 1000);
   };
 
-  const handleGoogleAuth = () => {
-    setIsLoading(true);
-    // Simulate Google OAuth
-    setTimeout(() => {
+  const loginWithGoogle = useGoogleLogin({
+  flow: "implicit",
+  onSuccess: async (tokenResponse) => {
+    try {
+      setIsLoading(true);
+      const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+        headers: {
+          Authorization: `Bearer ${tokenResponse.access_token}`,
+        },
+      });
+      const user = await res.json();
+      console.log("Google User Info", user);
+      onLogin(); 
+    } catch (error) {
+      console.error("Google login failed", error);
+    } finally {
       setIsLoading(false);
-      onLogin();
-    }, 1000);
-  };
+    }
+  },
+  onError: () => {
+    setIsLoading(false);
+    alert("Google login failed");
+  },
+});
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -125,7 +142,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
               <Button 
                 type="button"
                 variant="outline"
-                onClick={handleGoogleAuth}
+                onClick={() => loginWithGoogle()}
                 className="w-full bg-white border-violet-200 text-slate-700 hover:text-black hover:bg-violet-50 h-12"
                 disabled={isLoading}
               >
@@ -204,7 +221,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
               <Button 
                 type="button"
                 variant="outline"
-                onClick={handleGoogleAuth}
+                onClick={() => loginWithGoogle()}
                 className="w-full bg-white border-violet-200 text-slate-700 hover:bg-violet-50 h-12"
                 disabled={isLoading}
               >
