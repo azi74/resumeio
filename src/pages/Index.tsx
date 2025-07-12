@@ -19,6 +19,7 @@ const Index = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Check if mobile
   useEffect(() => {
@@ -31,16 +32,22 @@ const Index = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle navbar visibility on scroll
+  // Handle navbar visibility and scroll effects
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        const currentScrollY = window.scrollY;
+        
+        // Set scrolled state for styling
+        setIsScrolled(currentScrollY > 20);
+        
+        // Hide/show navbar logic
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsNavbarVisible(false);
         } else {
           setIsNavbarVisible(true);
         }
-        setLastScrollY(window.scrollY);
+        setLastScrollY(currentScrollY);
       }
     };
 
@@ -60,7 +67,7 @@ const Index = () => {
     },
     {
       icon: <Download className="w-6 h-6" />,
-      title: "Multiple Formats",
+      title: "Multiple Formats", 
       description: "Download in PDF, DOC, or DOCX formats"
     },
     {
@@ -138,11 +145,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 w-full">
-      {/* Header */}
-      <header className={`border-b border-slate-200 bg-white/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+      {/* Updated Header with card-like styling when scrolled */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
+      } ${
+        isScrolled 
+          ? 'bg-white/80 backdrop-blur-xl border border-slate-200/60 shadow-lg mx-4 mt-4 rounded-2xl' 
+          : 'bg-white/95 backdrop-blur-md border-b border-slate-200'
       }`}>
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between">
+        <div className={`w-full max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4 flex items-center justify-between ${
+          isScrolled ? 'px-6' : ''
+        }`}>
           <div className="flex items-center space-x-3 min-w-0">
             <div className="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
               <FileText className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -182,19 +195,19 @@ const Index = () => {
       {/* Add padding to account for fixed header */}
       <div className="pt-16 md:pt-20 w-full">
         {/* Hero Section */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24 text-center">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-32 text-center">
           <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 md:mb-8 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors text-sm md:text-base px-4 py-2">
+            <Badge className="mb-8 md:mb-10 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-50 transition-colors text-sm md:text-base px-4 py-2">
               ✨ High ATS Score Guaranteed
             </Badge>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-800 mb-6 md:mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-slate-800 mb-8 md:mb-10 leading-tight">
               Create Your Perfect
               <span className="bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent block sm:inline"> ATS-Optimized </span>
               Resume
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl md:text-3xl text-slate-600 mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed">
               Build professional resumes that pass applicant tracking systems and land you interviews. 
               Choose from 6 expertly designed templates and download in multiple formats.
             </p>
@@ -203,24 +216,24 @@ const Index = () => {
               <Button 
                 size="lg"
                 onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl h-14 md:h-16 w-full sm:w-auto font-semibold"
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 md:px-10 md:py-8 text-xl md:text-2xl h-16 md:h-20 w-full sm:w-auto font-semibold"
               >
                 Start Building Free
-                <FileText className="ml-3 w-5 h-5 md:w-6 md:h-6" />
+                <FileText className="ml-3 w-6 h-6 md:w-7 md:h-7" />
               </Button>
               
               <Button 
                 size="lg"
                 variant="outline"
                 onClick={() => setShowATSChecker(true)}
-                className="border-slate-200 hover:text-black hover:border-violet-500 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl h-14 md:h-16 w-full sm:w-auto font-semibold"
+                className="border-slate-200 hover:text-black hover:border-violet-500 bg-white text-slate-700 hover:bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-6 md:px-10 md:py-8 text-xl md:text-2xl h-16 md:h-20 w-full sm:w-auto font-semibold"
               >
                 Check ATS Score
-                <Upload className="ml-3 w-5 h-5 md:w-6 md:h-6" />
+                <Upload className="ml-3 w-6 h-6 md:w-7 md:h-7" />
               </Button>
             </div>
             
-            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-8 text-sm md:text-base text-slate-500">
+            <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-base md:text-lg text-slate-500">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-violet-500 rounded-full flex-shrink-0"></div>
                 <span>No Credit Card Required</span>
@@ -238,30 +251,30 @@ const Index = () => {
         </section>
 
         {/* Features Section */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
-          <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4 md:mb-6">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-32">
+          <div className="text-center mb-16 md:mb-20 lg:mb-24">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6 md:mb-8">
               Everything You Need to Land Your Dream Job
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl sm:text-2xl md:text-3xl text-slate-600 max-w-3xl mx-auto">
               Our resume builder is packed with features to help you create the perfect resume
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {features.map((feature, index) => (
               <Card 
                 key={index}
                 className="border-slate-200 hover:border-violet-200 transition-all duration-300 hover:shadow-lg group bg-white"
               >
-                <CardContent className="p-6 md:p-8">
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 text-white group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                <CardContent className="p-8 md:p-10">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 md:mb-8 text-white group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
                     {feature.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 mb-3 md:mb-4 leading-tight">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-800 mb-4 md:mb-6 leading-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                  <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -271,12 +284,12 @@ const Index = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
-          <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4 md:mb-6">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-32">
+          <div className="text-center mb-16 md:mb-20 lg:mb-24">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6 md:mb-8">
               Choose Your Plan
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl sm:text-2xl md:text-3xl text-slate-600 max-w-3xl mx-auto">
               Select the perfect plan for your resume building needs
             </p>
           </div>
@@ -331,72 +344,79 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Mobile View */}
-          <div className="md:hidden space-y-6">
-            {pricingPlans.map((plan, index) => (
-              <Card 
-                key={index}
-                className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl ${
-                  plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-                <CardContent className="p-6">
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
-                      <span className="text-slate-600 ml-2">/{plan.period}</span>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center">
-                        <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
-                        <span className="text-slate-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <Button 
-                    className={`w-full h-12 ${
-                      plan.popular 
-                        ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                    }`}
-                    variant={plan.popular ? 'default' : 'outline'}
-                    onClick={() => setShowAuth(true)}
-                  >
-                    Get Started
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Mobile View with Carousel */}
+          <div className="md:hidden">
+            <Carousel className="w-full max-w-sm mx-auto">
+              <CarouselContent>
+                {pricingPlans.map((plan, index) => (
+                  <CarouselItem key={index}>
+                    <Card 
+                      className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl ${
+                        plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
+                      }`}
+                    >
+                      {plan.popular && (
+                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                          <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
+                            Most Popular
+                          </Badge>
+                        </div>
+                      )}
+                      <CardContent className="p-6">
+                        <div className="text-center mb-6">
+                          <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+                          <div className="flex items-baseline justify-center">
+                            <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+                            <span className="text-slate-600 ml-2">/{plan.period}</span>
+                          </div>
+                        </div>
+                        
+                        <ul className="space-y-3 mb-8">
+                          {plan.features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-center">
+                              <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
+                              <span className="text-slate-600">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        
+                        <Button 
+                          className={`w-full h-12 ${
+                            plan.popular 
+                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
+                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                          }`}
+                          variant={plan.popular ? 'default' : 'outline'}
+                          onClick={() => setShowAuth(true)}
+                        >
+                          Get Started
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 lg:py-32">
           <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-16 text-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-black/5"></div>
             <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8">
                 Ready to Build Your Perfect Resume?
               </h2>
-              <p className="text-lg sm:text-xl md:text-2xl opacity-90 mb-8 md:mb-10 max-w-3xl mx-auto">
+              <p className="text-xl sm:text-2xl md:text-3xl opacity-90 mb-10 md:mb-12 max-w-3xl mx-auto">
                 Join thousands of job seekers who have successfully landed interviews with our ATS-optimized resumes
               </p>
               <Button 
                 size="lg"
                 onClick={isLoggedIn ? () => setActiveView("builder") : () => setShowAuth(true)}
-                className="bg-white hover:text-black text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-xl font-semibold h-16"
+                className="bg-white hover:text-black text-violet-600 hover:bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-10 py-8 text-2xl font-semibold h-20"
               >
                 Create Your Resume Now
               </Button>
@@ -461,7 +481,7 @@ const Index = () => {
               </div>
               <div className="border-t border-slate-800 pt-6 text-center">
                 <p className="text-slate-400 text-xs mb-4">
-                  &copy; 2024 resume.io
+                  &copy; 2025 resume.io
                 </p>
                 <div className="flex justify-center space-x-4 text-xs text-slate-400">
                   <a href="#" className="hover:text-white transition-colors">Privacy</a>
