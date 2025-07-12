@@ -52,8 +52,8 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
       </div>
 
       {fields.length === 0 ? (
-        <Card className="border-violet-100 border-dashed bg-white">
-          <CardContent className="p-12 text-center">
+        <Card className="border-violet-100 border-dashed">
+          <CardContent className="p-12 text-center bg-white">
             <Award className="w-12 h-12 text-slate-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-slate-600 mb-2">No certifications yet</h3>
             <p className="text-slate-500 mb-6">
@@ -71,7 +71,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
       ) : (
         <div className="space-y-6">
           {fields.map((field, index) => (
-            <Card key={field.id} className="border-violet-100">
+            <Card key={field.id} className="bg-white border-violet-100">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg flex items-center">
@@ -82,7 +82,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                     variant="outline" 
                     size="sm"
                     onClick={() => remove(index)}
-                    className="border-red-200 text-red-600 hover:bg-red-50"
+                    className="border-red-200 bg-white text-red-600 hover:bg-red-500"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -94,7 +94,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                     <Label className="text-slate-700">Certification Name *</Label>
                     <Input 
                       placeholder="AWS Solutions Architect Associate"
-                      className="border-violet-200 focus:border-violet-500"
+                      className="border-violet-200 bg-white placeholder:text-slate-300 focus:border-violet-500"
                       {...form.register(`certifications.${index}.name`, { required: true })}
                     />
                   </div>
@@ -102,7 +102,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                     <Label className="text-slate-700">Issuing Organization *</Label>
                     <Input 
                       placeholder="Amazon Web Services"
-                      className="border-violet-200 focus:border-violet-500"
+                      className="border-violet-200 bg-white placeholder:text-slate-300 focus:border-violet-500"
                       {...form.register(`certifications.${index}.issuer`, { required: true })}
                     />
                   </div>
@@ -113,7 +113,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                     <Label className="text-slate-700">Issue Date</Label>
                     <Input 
                       type="month"
-                      className="border-violet-200 focus:border-violet-500"
+                      className="border-violet-200 bg-white placeholder:text-slate-300 focus:border-violet-500"
                       {...form.register(`certifications.${index}.date`)}
                     />
                   </div>
@@ -121,7 +121,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                     <Label className="text-slate-700">Credential ID</Label>
                     <Input 
                       placeholder="ABC123XYZ"
-                      className="border-violet-200 focus:border-violet-500"
+                      className="border-violet-200 bg-white placeholder:text-slate-300 focus:border-violet-500"
                       {...form.register(`certifications.${index}.credentialId`)}
                     />
                   </div>
@@ -131,7 +131,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
                   <Label className="text-slate-700">Credential URL</Label>
                   <Input 
                     placeholder="https://verify.example.com/credential/abc123"
-                    className="border-violet-200 focus:border-violet-500"
+                    className="border-violet-200 bg-white placeholder:text-slate-300 focus:border-violet-500"
                     {...form.register(`certifications.${index}.url`)}
                   />
                 </div>
@@ -142,7 +142,7 @@ const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => 
           <Button 
             onClick={addCertification}
             variant="outline"
-            className="w-full border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
+            className="w-full bg-white border-violet-200 text-violet-600 hover:bg-violet-50 border-dashed"
           >
             <Plus className="w-4 h-4 mr-2" />
             Add Another Certification
