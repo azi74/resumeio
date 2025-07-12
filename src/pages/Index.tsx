@@ -16,8 +16,6 @@ const Index = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [showATSChecker, setShowATSChecker] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -32,22 +30,14 @@ const Index = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle navbar visibility and scroll effects
+  // Handle scroll effects - transform navbar immediately when scrolling
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY;
         
-        // Set scrolled state for styling
-        setIsScrolled(currentScrollY > 20);
-        
-        // Hide/show navbar logic
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsNavbarVisible(false);
-        } else {
-          setIsNavbarVisible(true);
-        }
-        setLastScrollY(currentScrollY);
+        // Transform navbar as soon as user scrolls (even 1px)
+        setIsScrolled(currentScrollY > 0);
       }
     };
 
@@ -57,7 +47,7 @@ const Index = () => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, []);
 
   const features = [
     {
@@ -145,10 +135,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 w-full">
-      {/* Updated Header with card-like styling when scrolled */}
+      {/* Updated Header - transforms immediately when scrolling */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${
         isScrolled 
           ? 'bg-white/80 backdrop-blur-xl border border-slate-200/60 shadow-lg mx-4 mt-4 rounded-2xl' 
           : 'bg-white/95 backdrop-blur-md border-b border-slate-200'
@@ -344,61 +332,61 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Mobile View with Carousel */}
+          {/* Mobile View with Horizontal Scrolling Cards */}
           <div className="md:hidden">
-            <Carousel className="w-full max-w-sm mx-auto">
-              <CarouselContent>
+            <div className="overflow-x-auto pb-4">
+              <div className="flex space-x-4 px-4" style={{ width: `${pricingPlans.length * 300}px` }}>
                 {pricingPlans.map((plan, index) => (
-                  <CarouselItem key={index}>
-                    <Card 
-                      className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl ${
-                        plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
-                      }`}
-                    >
-                      {plan.popular && (
-                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                          <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
-                            Most Popular
-                          </Badge>
+                  <Card 
+                    key={index}
+                    className={`relative border-slate-200 bg-white transition-all duration-300 hover:shadow-xl flex-shrink-0 w-72 ${
+                      plan.popular ? 'ring-2 ring-violet-500 shadow-lg' : 'hover:border-violet-200'
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <Badge className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-4 py-1">
+                          Most Popular
+                        </Badge>
+                      </div>
+                    )}
+                    <CardContent className="p-6">
+                      <div className="text-center mb-6">
+                        <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+                        <div className="flex items-baseline justify-center">
+                          <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
+                          <span className="text-slate-600 ml-2">/{plan.period}</span>
                         </div>
-                      )}
-                      <CardContent className="p-6">
-                        <div className="text-center mb-6">
-                          <h3 className="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-                          <div className="flex items-baseline justify-center">
-                            <span className="text-4xl font-bold text-slate-800">{plan.price}</span>
-                            <span className="text-slate-600 ml-2">/{plan.period}</span>
-                          </div>
-                        </div>
-                        
-                        <ul className="space-y-3 mb-8">
-                          {plan.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-center">
-                              <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
-                              <span className="text-slate-600">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <Button 
-                          className={`w-full h-12 ${
-                            plan.popular 
-                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
-                              : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                          }`}
-                          variant={plan.popular ? 'default' : 'outline'}
-                          onClick={() => setShowAuth(true)}
-                        >
-                          Get Started
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
+                      </div>
+                      
+                      <ul className="space-y-3 mb-8">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-center">
+                            <Check className="w-5 h-5 text-violet-500 mr-3 flex-shrink-0" />
+                            <span className="text-slate-600">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <Button 
+                        className={`w-full h-12 ${
+                          plan.popular 
+                            ? 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white' 
+                            : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                        }`}
+                        variant={plan.popular ? 'default' : 'outline'}
+                        onClick={() => setShowAuth(true)}
+                      >
+                        Get Started
+                      </Button>
+                    </CardContent>
+                  </Card>
                 ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+              </div>
+            </div>
+            <div className="text-center text-sm text-slate-500 mt-4">
+              Swipe to see all plans →
+            </div>
           </div>
         </section>
 
