@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
@@ -9,13 +8,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Upload, User, Mail, Phone, MapPin, Globe, Github } from "lucide-react";
 
+// Define the structure of personal details
+interface PersonalDetails {
+  fullName: string;
+  email: string;
+  phone: string;
+  location: string;
+  website: string;
+  linkedin: string;
+  github: string;
+  summary: string;
+  photo: string;
+}
+
+// Define the props for the form
 interface PersonalDetailsFormProps {
-  onDataChange: (data: any) => void;
-  data: any;
+  onDataChange: (data: PersonalDetails) => void;
+  data: {
+    personalDetails?: PersonalDetails;
+  };
 }
 
 const PersonalDetailsForm = ({ onDataChange, data }: PersonalDetailsFormProps) => {
-  const form = useForm({
+  const form = useForm<PersonalDetails>({
     defaultValues: data.personalDetails || {
       fullName: "",
       email: "",

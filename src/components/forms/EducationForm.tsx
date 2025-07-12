@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -7,13 +6,31 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2, GraduationCap } from "lucide-react";
 
+// Define the structure of a single education entry
+interface EducationEntry {
+  degree: string;
+  field: string;
+  school: string;
+  location: string;
+  graduationDate: string;
+  gpa: string;
+}
+
+// Define the form data structure
+interface EducationFormData {
+  education: EducationEntry[];
+}
+
+// Define the props for the form
 interface EducationFormProps {
-  onDataChange: (data: any) => void;
-  data: any;
+  onDataChange: (data: EducationEntry[]) => void;
+  data: {
+    education?: EducationEntry[];
+  };
 }
 
 const EducationForm = ({ onDataChange, data }: EducationFormProps) => {
-  const form = useForm({
+  const form = useForm<EducationFormData>({
     defaultValues: {
       education: data.education?.length > 0 ? data.education : [
         {

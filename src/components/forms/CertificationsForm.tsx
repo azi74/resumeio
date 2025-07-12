@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -7,13 +6,30 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2, Award } from "lucide-react";
 
+// Define the structure of a single certification entry
+interface CertificationEntry {
+  name: string;
+  issuer: string;
+  date: string;
+  credentialId: string;
+  url: string;
+}
+
+// Define the form data structure
+interface CertificationsFormData {
+  certifications: CertificationEntry[];
+}
+
+// Define the props for the form
 interface CertificationsFormProps {
-  onDataChange: (data: any) => void;
-  data: any;
+  onDataChange: (data: CertificationEntry[]) => void;
+  data: {
+    certifications?: CertificationEntry[];
+  };
 }
 
 const CertificationsForm = ({ onDataChange, data }: CertificationsFormProps) => {
-  const form = useForm({
+  const form = useForm<CertificationsFormData>({
     defaultValues: {
       certifications: data.certifications?.length > 0 ? data.certifications : []
     }
